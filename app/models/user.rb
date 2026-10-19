@@ -4,5 +4,13 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :password_digest, presence: true
-  # validates_associated :posts
+  validate :password_complexity
+
+  private
+
+  def password_complexity
+    if password.present? and !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{12,}$/)
+      errors.add :password, "must include at least one lowercase letter, one uppercase letter, one digit, and needs to be minimum 12 characters."
+    end
+  end
 end

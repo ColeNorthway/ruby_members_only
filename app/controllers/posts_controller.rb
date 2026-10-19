@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
     @post.date = Date.today
-    @post.user = User.find(1) # Temporary crutch for testing
+    @post.user = User.find(session[:user_id])
     if @post.save
       redirect_to @post
     else
