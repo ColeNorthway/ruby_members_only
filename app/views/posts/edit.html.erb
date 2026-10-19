@@ -1,1 +1,2 @@
 <%= render 'modify' %>
+<%= button_to "Delete", @post, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
