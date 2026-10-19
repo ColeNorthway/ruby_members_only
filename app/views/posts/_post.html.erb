@@ -1,0 +1,5 @@
+<h3 class="title"><%= post.title %></h3>
+<p class="date">Date Created: <%= post.date %></p>
+<p class="body"><%= post.body %></p>
+<%= link_to "View", post_path(post.id) %>
+<%= link_to "Edit", edit_post_path(post.id) %>
