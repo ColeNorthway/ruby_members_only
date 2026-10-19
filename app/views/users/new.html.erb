@@ -1,2 +1,8 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<%= render 'error' %>
+
+<%= form_with model: @user, url: user_path, method: @user.new_record? ? :post : :patch do |form| %>
+  Username: <%= form.text_field :username %><br><br>
+  Password: <%= form.password_field :password %><br>
+  Confirm Password: <%= form.password_field :password_confirmation %><br>
+  <%= form.submit %>
+<% end %>
