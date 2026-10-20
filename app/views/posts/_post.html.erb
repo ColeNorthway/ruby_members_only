@@ -1,6 +1,14 @@
-<h3 class="title"><%= post.title %></h3>
-<p class="date">Date Created: <%= post.date %></p>
-<p class="author">Author: <%= post.user.username %></p>
-<p class="body"><%= post.body %></p>
-<%= link_to "View", post_path(post.id) %>
-<%= link_to "Edit", edit_post_path(post.id) %>
+<div class="post">
+  <h3 class="title"><%= post.title %></h3>
+  <p class="date">Date Created: <%= post.date %></p>
+  <% if @logged_in %>
+    <p class="author">Author: <span style="color: green;"><%= post.user.username %></span></p>
+  <% else %>
+    <p class="author">Author: <span style="color: red;">???</span></p>
+  <% end %>
+  <p class="body"><%= post.body %></p>
+  <%= link_to "View", post_path(post.id) %>
+  <% if @logged_in %>
+    <%= link_to "Edit", edit_post_path(post.id) %>
+  <% end %>
+</div>
