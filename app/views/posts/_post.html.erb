@@ -7,8 +7,10 @@
     <p class="author">Author: <span style="color: red;">???</span></p>
   <% end %>
   <p class="body"><%= post.body %></p>
-  <%= link_to "View", post_path(post.id) %>
-  <% if @logged_in %>
+  <% unless @editable %>
+    <%= link_to "View", post_path(post.id) %>
+  <% end %>
+  <% if @logged_in && @editable && !@foreign_post %>
     <%= link_to "Edit", edit_post_path(post.id) %>
   <% end %>
 </div>
