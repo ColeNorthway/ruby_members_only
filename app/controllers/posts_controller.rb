@@ -18,10 +18,11 @@ class PostsController < ApplicationController
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
     @post.date = Date.today
-    @post.user = User.find(session[:user_id])
+    @post.user = User.find(cookies.encrypted[:clubhouse_ticket])
     if @post.save
       redirect_to @post
     else
+      flash.now[:error] = "Cannot process post"
       render :new, status: :unprocessable_entity
     end
   end

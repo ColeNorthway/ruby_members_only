@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   before_action :authenticate
+  before_action :auth_state
 
   private
 
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Error you need to be signed in to view that"
       redirect_to posts_path
     end
+  end
+
+  def auth_state
+    @logged_in = logged_in? ? true : false
   end
 
   def logged_in?
