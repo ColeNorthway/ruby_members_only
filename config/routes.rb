@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   resource :user
 
   # Login Form
-  resource :session, only: [ :new, :create ]
+  resource :session, only: [ :new, :create, :destroy ]
 end

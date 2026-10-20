@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_19_091951) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_20_044256) do
   create_table "posts", force: :cascade do |t|
     t.date "date", null: false
     t.string "title", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_19_091951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest", null: false
+    t.string "remember"
+    t.index ["remember"], name: "index_users_on_remember", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
