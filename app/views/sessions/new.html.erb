@@ -1,0 +1,9 @@
+<h3>Welcome to the ClubHouse</h3>
+
+<%= form_with url: "/session", method: :post do |form| %>
+  Username: <%= form.text_field :username %><br>
+  Password: <%= form.text_field :password %><br><br>
+  <%= form.submit "Log In" %>
+<% end %>
+
+<p><%= link_to "Home", posts_path %></p>
