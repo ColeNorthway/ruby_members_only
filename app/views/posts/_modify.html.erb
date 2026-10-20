@@ -11,7 +11,7 @@
 <% end %>
 
 <%= form_with model: @post do |form| %>
-  Title: <%= form.text_field :title %><br>
-  Body: <%= form.textarea :body, size: "70x5" %><br><br>
+  Title: <%= form.text_field :title, required: true %><br>
+  Body: <%= form.textarea :body, size: "70x5", required: true %><br><br>
   <%= form.submit %>
 <% end %>
