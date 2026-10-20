@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
+  before_action :our_user?, only: [ :edit, :destroy, :update ]
   skip_before_action :authenticate, only: [ :index, :show ]
 
   def index
+    if @logged_in
+      @user = User.find_by(id: cookies.encrypted[:clubhouse_ticket])
+    end
     @posts = Post.all
   end
 
@@ -48,5 +52,14 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+  end
+
+  private
+
+  def our_user?
+    unless params[:id] == cookies.encrypted[:clubhouse_ticket]
+      flash[:error] = "Error you do not have permissions to do that"
+      redirect_to posts_path
+    end
   end
 end

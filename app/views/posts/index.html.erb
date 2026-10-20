@@ -1,4 +1,8 @@
-<h1 id="clubhouse-title">Secret Clubhouse</h1>
+<% if @logged_in && !@user.nil? %>
+  <h1 id="clubhouse-title">Hi <%= @user.username %>, Welcome to the Secret Clubhouse</h1>
+<% else %>
+  <h1 id="clubhouse-title">Secret Clubhouse</h1>
+<% end %>
 <%= render @posts %>
 
 <br><br>
