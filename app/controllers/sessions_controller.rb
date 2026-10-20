@@ -1,4 +1,11 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate, only: [ :new, :create ]
+
+  def new
+    # Just serves the form to login
+    # Was placed here instead of running default for skip_before_action
+  end
+
   def create
     user = User.find_by(username: params[:username])
 

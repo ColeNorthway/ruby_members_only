@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate, only: [ :new, :create ]
+
   def new
     @user = User.new
   end
@@ -10,6 +12,7 @@ class UsersController < ApplicationController
       cookies.permanent.encrypted[:clubhouse_ticket] = @user.id
       @user.remember = cookies.encrypted[:clubhouse_ticket]
       @user.update(remember: cookies.encrypted[:clubhouse_ticket])
+      redirect_to posts_path
     else
       render :new, status: :unprocessable_entity
     end
